@@ -1,0 +1,27 @@
+﻿{
+  "inf":
+  {
+    "SupportColumn": [],
+    "CombatBlock": [["inf", "inf", "inf"], ["inf", "inf", "inf"], ["inf", "inf", "inf"], [], []],
+    
+    "stats": 
+    {
+      "soft": 180,
+      "hard": 20,
+      "air": 0,
+      "hp": 160,
+      "org": 180
+    },
+    
+    "req": 
+    {
+      "man": 18000,
+      "eq": 
+      {
+        "gun": 18000,
+        "support": 40
+      }
+      
+    }
+  }
+}
