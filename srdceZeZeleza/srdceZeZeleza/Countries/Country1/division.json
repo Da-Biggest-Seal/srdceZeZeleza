@@ -1,2 +1,14 @@
 ﻿{
+  "Infantry":
+  {
+    "SupportColumn": ["", "", "", "", ""],
+    
+    "CombatBlock": [
+      ["infBat", "infBat", "infBat", "", ""],
+      ["infBat", "infBat", "infBat", "", ""],
+      ["infBat", "infBat", "infBat", "", ""],
+      ["", "", "", "", ""],
+      ["", "", "", "", ""]
+    ]
+  }
 }
