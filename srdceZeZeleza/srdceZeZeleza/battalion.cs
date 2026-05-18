@@ -2,7 +2,7 @@
 
 namespace srdceZeZeleza;
 
-public class Statistics
+public struct Statistics
 {
     public int Soft { get; set; }
     public int Hard { get; set; }
@@ -11,10 +11,15 @@ public class Statistics
     public int Org { get; set; }
 }
 
-public class Requirements
+public struct Requirements
 {
     public int Manpower { get; set; }
     public Dictionary<string, int> Equipment { get; set; } = new Dictionary<string, int>();
+
+    public Requirements()
+    {
+        
+    }
 }
 
 public class Battalion

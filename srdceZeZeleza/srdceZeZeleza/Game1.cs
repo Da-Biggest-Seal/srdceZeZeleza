@@ -9,6 +9,8 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
+    Data data;
+
     public Game1()
     {
         _graphics = new GraphicsDeviceManager(this);
@@ -18,7 +20,7 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        // TODO: Add your initialization logic here
+        data = new Data("Jsons\\battalion.json");
 
         base.Initialize();
     }
@@ -36,7 +38,7 @@ public class Game1 : Game
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
 
-        // TODO: Add your update logic here
+        data.Testing();
 
         base.Update(gameTime);
     }

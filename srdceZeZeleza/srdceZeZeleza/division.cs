@@ -12,21 +12,9 @@ public class Division
     
     public Statistics Stats { get; set; } = new Statistics();
     public Requirements Req { get; set; } = new Requirements();
-
-    public Statistics CalculateDivisionStatistics()
-    {
-        
-    }
     
-    public Requirements CalculateDivisionRequirements()
-    {
-        
-    }
-
     public Division(string name)
     {
         Name = name;
-        Stats = CalculateDivisionStatistics();
-        Req = CalculateDivisionRequirements();
     }
 }

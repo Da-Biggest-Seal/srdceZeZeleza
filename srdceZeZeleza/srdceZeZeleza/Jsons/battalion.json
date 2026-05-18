@@ -1,4 +1,4 @@
-﻿{
+{
   "infBat":
   {
     "stats": 
@@ -7,16 +7,38 @@
       "hard": 2,
       "air": 0,
       "hp": 15,
-      "org": 5
+      "org": 50
     },
     
-    "req": 
+    "requirement": 
     {
-      "man": 2000,
-      "eq": 
+      "manpower": 2000,
+      "equipment": 
       {
         "gun": 2000,
         "support": 5
+      }
+    }
+  },
+
+  "supArtillery":
+  {
+    "stats":
+    {
+      "soft": 60,
+      "hard": 5,
+      "air": 0,
+      "hp": 0,
+      "org": 0
+    },
+
+    "requirement":
+    {
+      "manpower": 100,
+      "equipment":
+      {
+        "artillery": 14,
+        "gun": 100
       }
     }
   }
