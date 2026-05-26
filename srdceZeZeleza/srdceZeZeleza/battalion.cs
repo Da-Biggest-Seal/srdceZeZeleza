@@ -14,7 +14,7 @@ public struct Statistics
 public struct Requirements
 {
     public int Manpower { get; set; }
-    public Dictionary<string, int> Equipment { get; set; } = new Dictionary<string, int>();
+    public Dictionary<string, int> Equipment { get; set; }
 
     public Requirements()
     {

@@ -10,7 +10,7 @@
       "org": 50
     },
     
-    "requirement": 
+    "req": 
     {
       "manpower": 2000,
       "equipment": 
@@ -32,7 +32,7 @@
       "org": 0
     },
 
-    "requirement":
+    "req":
     {
       "manpower": 100,
       "equipment":

@@ -27,6 +27,7 @@ public class Data
             Console.WriteLine($"Name: {entry}");
             Console.WriteLine($"  Stats: Soft={battalion.Stats.Soft}, Hard={battalion.Stats.Hard}, HP={battalion.Stats.Hp}, Org={battalion.Stats.Org}");
             Console.WriteLine($"  Req: Manpower={battalion.Req.Manpower}");
+            
             foreach ((string eqName, int amount) in battalion.Req.Equipment)
             {
                 Console.WriteLine($"    Equipment: {eqName}={amount}");

@@ -10,6 +10,7 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
 
     Data data;
+    Division division;
 
     public Game1()
     {
@@ -21,6 +22,11 @@ public class Game1 : Game
     protected override void Initialize()
     {
         data = new Data("Jsons\\battalion.json");
+        division = new Division("Countries\\Country1\\division.json");
+        
+        data.Testing();
+
+        division.Testing("Countries\\Country1\\division.json");
 
         base.Initialize();
     }
@@ -37,9 +43,7 @@ public class Game1 : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
-
-        data.Testing();
-
+        
         base.Update(gameTime);
     }
 
