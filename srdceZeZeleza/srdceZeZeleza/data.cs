@@ -24,8 +24,8 @@ public class Data
 
         foreach ((string entry, Battalion battalion) in BattalionLibrary)
         {
-            Console.WriteLine($"Name: {entry}");
-            Console.WriteLine($"  Stats: Soft={battalion.Stats.Soft}, Hard={battalion.Stats.Hard}, HP={battalion.Stats.Hp}, Org={battalion.Stats.Org}");
+            Console.WriteLine($"Name: {battalion.Name}, Type: {battalion.Type}");
+            Console.WriteLine($"  Stats: Soft={battalion.Stats.Soft}, Hard={battalion.Stats.Hard}, HP={battalion.Stats.Hp}, Org={battalion.Stats.Org}, Speed={battalion.Stats.Speed}");
             Console.WriteLine($"  Req: Manpower={battalion.Req.Manpower}");
             
             foreach ((string eqName, int amount) in battalion.Req.Equipment)

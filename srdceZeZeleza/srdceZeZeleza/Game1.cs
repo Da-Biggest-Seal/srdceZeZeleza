@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -21,13 +22,19 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        data = new Data("Jsons\\battalion.json");
-        division = new Division("Countries\\Country1\\division.json");
+        data = new Data("Jsons/battalion.json");
+        division = new Division("Countries/Country1/division.json");
         
-        data.Testing();
-
-        division.Testing("Countries\\Country1\\division.json");
-
+        Console.WriteLine(division.Name);
+        Console.WriteLine($"S={division.Stats.Soft}, H={division.Stats.Hard}, A={division.Stats.Air}, HP={division.Stats.Hp}, O={division.Stats.Org}, SP={division.Stats.Speed}");
+        
+        Console.WriteLine($"Manpower={division.Req.Manpower}");
+            
+        foreach ((string eqName, int amount) in division.Req.Equipment)
+        {
+            Console.WriteLine($"    Equipment: {eqName}={amount}");
+        }
+        
         base.Initialize();
     }
 

@@ -1,12 +1,27 @@
 ﻿{
   "Infantry":
   {
+    "Name": "Infantry Division",
     "SupportColumn": ["supArtillery", "", "", "", ""],
     
     "CombatBlock": [
       ["infBat", "infBat", "infBat", "", ""],
       ["infBat", "infBat", "infBat", "", ""],
       ["infBat", "infBat", "infBat", "", ""],
+      ["", "", "", "", ""],
+      ["", "", "", "", ""]
+    ]
+  },
+
+  "Infantry_6":
+  {
+    "Name": "Infantry 6",
+    "SupportColumn": ["", "", "", "", ""],
+
+    "CombatBlock": [
+      ["infBat", "infBat", "infBat", "", ""],
+      ["infBat", "infBat", "infBat", "", ""],
+      ["", "", "", "", ""],
       ["", "", "", "", ""],
       ["", "", "", "", ""]
     ]

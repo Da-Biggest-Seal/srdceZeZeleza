@@ -8,6 +8,8 @@ namespace srdceZeZeleza;
 
 public class DivisionData
 {
+    public string Name {get; set;}
+    
     [JsonPropertyName("SupportColumn")]
     public string[] StringSupportColumn { get; set; }
     
@@ -19,7 +21,7 @@ public class Division
 {
     public static Dictionary<string, DivisionData> CountryDivisionLibrary { get; set; } = new();
     
-    public string Name;
+    public string Name {get; set;}
     
     public Battalion[] SupportColumn = new Battalion[5];
     public Battalion[][] CombatBlock = new Battalion[5][];
@@ -36,6 +38,8 @@ public class Division
         
         foreach ((string key, DivisionData divData) in CountryDivisionLibrary)
         {
+            Name = divData.Name;
+            
             for (int x = 0; x < divData.StringCombatBlock.Length; x++)
             {
                 CombatBlock[x] = new Battalion[divData.StringCombatBlock[x].Length];
@@ -74,6 +78,7 @@ public class Division
 
         Statistics stats = Stats;
         Requirements req = Req;
+        int oldSpeed = 1000; //sorry for the magic number but it has to be a big number 
         
         foreach ((Battalion battalion, int count) in battalionCounter)
         {
@@ -82,8 +87,19 @@ public class Division
             stats.Air += count * battalion.Stats.Air;
             stats.Hp += count * battalion.Stats.Hp;
             stats.Org += count * battalion.Stats.Org;
+
+            if (battalion.Stats.Speed < oldSpeed && battalion.Type != "support") stats.Speed = battalion.Stats.Speed;
             
             req.Manpower += count * battalion.Req.Manpower;
+            foreach ((string eqName, int amount) in battalion.Req.Equipment)
+            {
+                if (!req.Equipment.ContainsKey(eqName))
+                    req.Equipment.Add(eqName, count * amount);
+                else
+                    req.Equipment[eqName] += count * amount;
+            }
+            
+            oldSpeed = battalion.Stats.Speed;
         }
         
         Stats = stats;

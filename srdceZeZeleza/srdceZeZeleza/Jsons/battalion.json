@@ -1,21 +1,24 @@
 {
   "infBat":
   {
+    "name": "Infantry Battalion",
+    "type": "combat",    
     "stats": 
     {
-      "soft": 20,
-      "hard": 2,
+      "soft": 3,
+      "hard": 1,
       "air": 0,
-      "hp": 15,
-      "org": 50
+      "hp": 25,
+      "org": 7,
+      "speed": 4
     },
     
     "req": 
     {
-      "manpower": 2000,
+      "manpower": 1000,
       "equipment": 
       {
-        "gun": 2000,
+        "gun": 200,
         "support": 5
       }
     }
@@ -23,22 +26,23 @@
 
   "supArtillery":
   {
+    "name": "Support Artillery",
+    "type": "support",
     "stats":
     {
-      "soft": 60,
-      "hard": 5,
+      "soft": 15,
+      "hard": 1,
       "air": 0,
       "hp": 0,
-      "org": 0
+      "org": -6
     },
 
     "req":
     {
-      "manpower": 100,
+      "manpower": 300,
       "equipment":
       {
-        "artillery": 14,
-        "gun": 100
+        "artillery": 12
       }
     }
   }

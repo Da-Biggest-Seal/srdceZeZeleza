@@ -9,12 +9,13 @@ public struct Statistics
     public int Air { get; set; }
     public int Hp { get; set; }
     public int Org { get; set; }
+    public int Speed { get; set; }
 }
 
 public struct Requirements
 {
     public int Manpower { get; set; }
-    public Dictionary<string, int> Equipment { get; set; }
+    public Dictionary<string, int> Equipment { get; set; } = new Dictionary<string, int>();
 
     public Requirements()
     {
@@ -24,6 +25,8 @@ public struct Requirements
 
 public class Battalion
 {
+    public string Name { get; set; }
+    public string Type { get; set; }
     public Statistics Stats { get; set; }
-    public Requirements Req { get; set; }
+    public Requirements Req { get; set; } = new Requirements();
 }
