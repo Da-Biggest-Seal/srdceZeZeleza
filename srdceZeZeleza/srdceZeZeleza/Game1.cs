@@ -11,7 +11,8 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
 
     Data data;
-    Division division;
+    Division division_0;
+    Division division_1;
 
     public Game1()
     {
@@ -23,14 +24,25 @@ public class Game1 : Game
     protected override void Initialize()
     {
         data = new Data("Jsons/battalion.json");
-        division = new Division("Countries/Country1/division.json");
+        division_0 = new Division("Countries/Country1/division.json", "Infantry");
+        division_1 = new Division("Countries/Country1/division.json", "Infantry_6");
         
-        Console.WriteLine(division.Name);
-        Console.WriteLine($"S={division.Stats.Soft}, H={division.Stats.Hard}, A={division.Stats.Air}, HP={division.Stats.Hp}, O={division.Stats.Org}, SP={division.Stats.Speed}");
+        Console.WriteLine(division_0.Name);
+        Console.WriteLine($"S={division_0.Stats.Soft}, H={division_0.Stats.Hard}, A={division_0.Stats.Air}, HP={division_0.Stats.Hp}, O={division_0.Stats.Org}, SP={division_0.Stats.Speed}");
         
-        Console.WriteLine($"Manpower={division.Req.Manpower}");
+        Console.WriteLine($"Manpower={division_0.Req.Manpower}");
             
-        foreach ((string eqName, int amount) in division.Req.Equipment)
+        foreach ((string eqName, int amount) in division_0.Req.Equipment)
+        {
+            Console.WriteLine($"    Equipment: {eqName}={amount}");
+        }
+        
+        Console.WriteLine(division_1.Name);
+        Console.WriteLine($"S={division_1.Stats.Soft}, H={division_1.Stats.Hard}, A={division_1.Stats.Air}, HP={division_1.Stats.Hp}, O={division_1.Stats.Org}, SP={division_1.Stats.Speed}");
+        
+        Console.WriteLine($"Manpower={division_1.Req.Manpower}");
+            
+        foreach ((string eqName, int amount) in division_1.Req.Equipment)
         {
             Console.WriteLine($"    Equipment: {eqName}={amount}");
         }

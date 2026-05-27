@@ -29,27 +29,32 @@ public class Division
     public Statistics Stats { get; set; } = new Statistics();
     public Requirements Req { get; set; } = new Requirements();
     
-    public Division(string countryDivisionJsonPath)
+    public Division(string countryDivisionJsonPath, string divisionCodeName)
     {
+        //deserialize
         string json = File.ReadAllText(countryDivisionJsonPath);
         CountryDivisionLibrary = JsonSerializer.Deserialize<Dictionary<string, DivisionData>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
         Dictionary<Battalion, int> battalionCounter = new();
-        
-        foreach ((string key, DivisionData divData) in CountryDivisionLibrary)
+
+        //loop through the deserialized json
+        DivisionData divData = CountryDivisionLibrary[divisionCodeName];
         {
             Name = divData.Name;
             
             for (int x = 0; x < divData.StringCombatBlock.Length; x++)
             {
+                //create the second array in main array, size of the deserialized y-axis list
                 CombatBlock[x] = new Battalion[divData.StringCombatBlock[x].Length];
                 
                 for (int y = 0; y < divData.StringCombatBlock[x].Length; y++)
                 {
                     if (!(string.IsNullOrEmpty(divData.StringCombatBlock[x][y])))
                     {
+                        //assign battalions to the array
                         CombatBlock[x][y] = Data.BattalionLibrary[divData.StringCombatBlock[x][y]];
 
+                        //battalion counter
                         if (!(battalionCounter.ContainsKey(CombatBlock[x][y])))
                         {
                             battalionCounter.Add(CombatBlock[x][y], 1);
@@ -60,6 +65,7 @@ public class Division
                 }
             }
 
+            //same for the support column
             for (int i = 0; i < divData.StringSupportColumn.Length; i++)
             {
                 if (!(string.IsNullOrEmpty(divData.StringSupportColumn[i])))
@@ -78,7 +84,7 @@ public class Division
 
         Statistics stats = Stats;
         Requirements req = Req;
-        int oldSpeed = 1000; //sorry for the magic number but it has to be a big number 
+        int oldSpeed = 1000; //sorry for the magic number, but it has to be a big number 
         
         foreach ((Battalion battalion, int count) in battalionCounter)
         {
@@ -112,10 +118,26 @@ public class Division
         {
             foreach (Battalion b in row)
             {
-                Console.WriteLine(b);
+                if (b != null) Console.Write($"[{b.Name}]");
+                else Console.Write("empty");
             }
         }
         
         foreach (Battalion support in SupportColumn) Console.WriteLine(support);
+    }
+
+    public void NewDivision(string name)
+    {
+        //will add a new entry to the json - from template.json where will all templates stored
+    }
+
+    public void DeleteDivision(string codeName)
+    {
+        //will delete a division that has the same codeName as inputed, would be better if it looked for the normal Name
+    }
+
+    public void Change(int x, int y, Battalion newBattalion)
+    {
+        //will change battalion on position x,y for a different one that can be put there
     }
 }
