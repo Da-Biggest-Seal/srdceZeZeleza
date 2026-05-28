@@ -20,6 +20,9 @@ public class DivisionData
 public class Division
 {
     public static Dictionary<string, DivisionData> CountryDivisionLibrary { get; set; } = new();
+    public static string TemplateDataPath = "Jsons/template.json";
+
+    public static Dictionary<string, DivisionData> TemplateData { get; private set; } = new();
     
     public string Name {get; set;}
     
@@ -34,7 +37,8 @@ public class Division
         //deserialize
         string json = File.ReadAllText(countryDivisionJsonPath);
         CountryDivisionLibrary = JsonSerializer.Deserialize<Dictionary<string, DivisionData>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-
+        TemplateData = JsonSerializer.Deserialize<Dictionary<string, DivisionData>>(TemplateDataPath, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        
         Dictionary<Battalion, int> battalionCounter = new();
 
         //loop through the deserialized json
@@ -84,7 +88,7 @@ public class Division
 
         Statistics stats = Stats;
         Requirements req = Req;
-        int oldSpeed = 1000; //sorry for the magic number, but it has to be a big number 
+        int oldSpeed = 1000; //sorry for the magic number, but it has to be a big number, will get overwritten imminently
         
         foreach ((Battalion battalion, int count) in battalionCounter)
         {
@@ -126,18 +130,25 @@ public class Division
         foreach (Battalion support in SupportColumn) Console.WriteLine(support);
     }
 
-    public void NewDivision(string name)
+    //-------------------------------------//
+    // THIS HAS TO BE MOVED SOMEWHERE ELSE //
+    //-------------------------------------//
+    public void NewDivision(string divJsonPath, string name, string codeName)
     {
         //will add a new entry to the json - from template.json where will all templates stored
+        CountryDivisionLibrary.Add(codeName, TemplateData["division"]);
+        CountryDivisionLibrary[codeName].Name = name;
     }
 
     public void DeleteDivision(string codeName)
     {
         //will delete a division that has the same codeName as inputed, would be better if it looked for the normal Name
+        CountryDivisionLibrary.Remove(codeName);
     }
 
-    public void Change(int x, int y, Battalion newBattalion)
+    public void Change(string codeName, int x, int y, Battalion newBattalion)
     {
         //will change battalion on position x,y for a different one that can be put there
+        CombatBlock[x][y] = newBattalion;
     }
 }

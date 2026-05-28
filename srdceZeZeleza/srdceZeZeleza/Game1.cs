@@ -10,7 +10,8 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
 
-    Data data;
+    Data battalionData;
+    Data templateData;
     Division division_0;
     Division division_1;
 
@@ -23,7 +24,8 @@ public class Game1 : Game
 
     protected override void Initialize()
     {
-        data = new Data("Jsons/battalion.json");
+        battalionData = new Data("Jsons/battalion.json");
+        
         division_0 = new Division("Countries/Country1/division.json", "Infantry");
         division_1 = new Division("Countries/Country1/division.json", "Infantry_6");
         
@@ -46,6 +48,8 @@ public class Game1 : Game
         {
             Console.WriteLine($"    Equipment: {eqName}={amount}");
         }
+        
+        division_1.Change();
         
         base.Initialize();
     }
