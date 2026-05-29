@@ -1,2 +1,2 @@
-﻿using var game = new srdceZeZeleza.Game1();
+﻿using var game = new srdceZeZeleza.main();
 game.Run();

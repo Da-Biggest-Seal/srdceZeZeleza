@@ -133,18 +133,7 @@ public class Division
     //-------------------------------------//
     // THIS HAS TO BE MOVED SOMEWHERE ELSE //
     //-------------------------------------//
-    public void NewDivision(string divJsonPath, string name, string codeName)
-    {
-        //will add a new entry to the json - from template.json where will all templates stored
-        CountryDivisionLibrary.Add(codeName, TemplateData["division"]);
-        CountryDivisionLibrary[codeName].Name = name;
-    }
-
-    public void DeleteDivision(string codeName)
-    {
-        //will delete a division that has the same codeName as inputed, would be better if it looked for the normal Name
-        CountryDivisionLibrary.Remove(codeName);
-    }
+    
 
     public void Change(string codeName, int x, int y, Battalion newBattalion)
     {

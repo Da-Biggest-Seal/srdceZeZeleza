@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace srdceZeZeleza;
 
-public class Game1 : Game
+public class main : Game
 {
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
@@ -15,7 +15,7 @@ public class Game1 : Game
     Division division_0;
     Division division_1;
 
-    public Game1()
+    public main()
     {
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
@@ -48,8 +48,6 @@ public class Game1 : Game
         {
             Console.WriteLine($"    Equipment: {eqName}={amount}");
         }
-        
-        division_1.Change();
         
         base.Initialize();
     }
