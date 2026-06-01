@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Text.Json;
 using System.Collections.Generic;
-using System.IO;
 using System.Text.Json.Serialization;
 
 namespace srdceZeZeleza;
@@ -20,10 +18,6 @@ public class DivisionData
 public class Division
 {
     public static Dictionary<string, DivisionData> CountryDivisionLibrary { get; set; } = new();
-    public static string TemplateDataPath = "Jsons/template.json";
-
-    public static Dictionary<string, DivisionData> TemplateData { get; private set; } = new();
-    
     public string Name {get; set;}
     
     public Battalion[] SupportColumn = new Battalion[5];
@@ -32,13 +26,8 @@ public class Division
     public Statistics Stats { get; set; } = new Statistics();
     public Requirements Req { get; set; } = new Requirements();
     
-    public Division(string countryDivisionJsonPath, string divisionCodeName)
+    public Division(string divisionCodeName)
     {
-        //deserialize
-        string json = File.ReadAllText(countryDivisionJsonPath);
-        CountryDivisionLibrary = JsonSerializer.Deserialize<Dictionary<string, DivisionData>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-        TemplateData = JsonSerializer.Deserialize<Dictionary<string, DivisionData>>(TemplateDataPath, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-        
         Dictionary<Battalion, int> battalionCounter = new();
 
         //loop through the deserialized json
@@ -88,7 +77,7 @@ public class Division
 
         Statistics stats = Stats;
         Requirements req = Req;
-        int oldSpeed = 1000; //sorry for the magic number, but it has to be a big number, will get overwritten imminently
+        int oldSpeed = 1024; //sorry for the magic number, but it has to be a big number, will get overwritten imminently
         
         foreach ((Battalion battalion, int count) in battalionCounter)
         {
