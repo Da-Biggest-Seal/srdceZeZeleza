@@ -11,9 +11,10 @@ public class main : Game
     private SpriteBatch _spriteBatch;
 
     Data battalionData;
-    Data templateData;
-    Division division_0;
-    Division division_1;
+
+    Country ger;
+    
+    bool lmb;
 
     public main()
     {
@@ -25,29 +26,14 @@ public class main : Game
     protected override void Initialize()
     {
         battalionData = new Data("Jsons/battalion.json");
+
+        ger = new Country("German Reich", "Countries/Country1");
         
-        division_0 = new Division("Countries/Country1/division.json", "Infantry");
-        division_1 = new Division("Countries/Country1/division.json", "Infantry_6");
+        Division inf = ger.DivisionStats["Infantry"];
         
-        Console.WriteLine(division_0.Name);
-        Console.WriteLine($"S={division_0.Stats.Soft}, H={division_0.Stats.Hard}, A={division_0.Stats.Air}, HP={division_0.Stats.Hp}, O={division_0.Stats.Org}, SP={division_0.Stats.Speed}");
-        
-        Console.WriteLine($"Manpower={division_0.Req.Manpower}");
-            
-        foreach ((string eqName, int amount) in division_0.Req.Equipment)
-        {
-            Console.WriteLine($"    Equipment: {eqName}={amount}");
-        }
-        
-        Console.WriteLine(division_1.Name);
-        Console.WriteLine($"S={division_1.Stats.Soft}, H={division_1.Stats.Hard}, A={division_1.Stats.Air}, HP={division_1.Stats.Hp}, O={division_1.Stats.Org}, SP={division_1.Stats.Speed}");
-        
-        Console.WriteLine($"Manpower={division_1.Req.Manpower}");
-            
-        foreach ((string eqName, int amount) in division_1.Req.Equipment)
-        {
-            Console.WriteLine($"    Equipment: {eqName}={amount}");
-        }
+        Console.WriteLine($"{inf.Name}:\n Soft={inf.Stats.Soft}");
+        foreach (var (eqName, amount) in inf.Req.Equipment)
+            Console.WriteLine($"    {eqName}={amount}");
         
         base.Initialize();
     }
@@ -64,6 +50,9 @@ public class main : Game
         if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
             Keyboard.GetState().IsKeyDown(Keys.Escape))
             Exit();
+        
+        lmb = Mouse.GetState().LeftButton == ButtonState.Pressed;
+        
         
         base.Update(gameTime);
     }

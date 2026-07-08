@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
@@ -12,7 +13,7 @@ public class Country
     public static string TemplateDataPath = "Jsons/template.json";
     public Data BattalionLibrary { get; private set; }
     public Dictionary<string, DivisionData> CountryDivisionLibrary { get; private set; }
-    public Dictionary<> Divisions { get; set; }
+    public Dictionary<string, Division> DivisionStats { get; set; } = new();
     public static Dictionary<string, DivisionData> TemplateData { get; private set; } = new();
     
     public Country(string name, string folderPath)
@@ -24,12 +25,16 @@ public class Country
         CountryDivisionPath = CountryFolderPath + "/division.json";
         
         //deserialize
-        string json = File.ReadAllText(CountryDivisionPath);
-        CountryDivisionLibrary = JsonSerializer.Deserialize<Dictionary<string, DivisionData>>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-        TemplateData = JsonSerializer.Deserialize<Dictionary<string, DivisionData>>(TemplateDataPath, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        string jsonDivData = File.ReadAllText(CountryDivisionPath);
+        CountryDivisionLibrary = JsonSerializer.Deserialize<Dictionary<string, DivisionData>>(jsonDivData, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        string jsonDiv = File.ReadAllText(TemplateDataPath);
+        TemplateData = JsonSerializer.Deserialize<Dictionary<string, DivisionData>>(jsonDiv, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
         
         //get the divisions into a dict
-        
+        foreach ((string codename, DivisionData data) in CountryDivisionLibrary)
+        {
+            DivisionStats.Add(codename, new Division(CountryDivisionLibrary[codename]));
+        }
     }
     
     public void NewDivision(string name, string codeName)

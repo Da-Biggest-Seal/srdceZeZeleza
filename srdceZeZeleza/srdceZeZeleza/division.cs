@@ -26,12 +26,11 @@ public class Division
     public Statistics Stats { get; set; } = new Statistics();
     public Requirements Req { get; set; } = new Requirements();
     
-    public Division(string divisionCodeName)
+    public Division(DivisionData divData)
     {
         Dictionary<Battalion, int> battalionCounter = new();
 
         //loop through the deserialized json
-        DivisionData divData = CountryDivisionLibrary[divisionCodeName];
         {
             Name = divData.Name;
             
@@ -77,7 +76,7 @@ public class Division
 
         Statistics stats = Stats;
         Requirements req = Req;
-        int oldSpeed = 1024; //sorry for the magic number, but it has to be a big number, will get overwritten imminently
+        int oldSpeed = 1024; //sorry for the magic number, but it has to be a big number, will get overwritten immiedetly
         
         foreach ((Battalion battalion, int count) in battalionCounter)
         {
