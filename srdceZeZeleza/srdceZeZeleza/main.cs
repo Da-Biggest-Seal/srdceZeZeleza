@@ -29,12 +29,15 @@ public class main : Game
 
         ger = new Country("German Reich", "Countries/Country1");
         
-        Division inf = ger.DivisionStats["Infantry"];
+        foreach (string key in ger.DivisionStats.Keys)
+            Console.WriteLine(key);
+        
+        /*Division inf = ger.DivisionStats["Infantry"];
         
         Console.WriteLine($"{inf.Name}:\n Soft={inf.Stats.Soft}");
         foreach (var (eqName, amount) in inf.Req.Equipment)
             Console.WriteLine($"    {eqName}={amount}");
-        
+        */
         base.Initialize();
     }
 
@@ -52,7 +55,8 @@ public class main : Game
             Exit();
         
         lmb = Mouse.GetState().LeftButton == ButtonState.Pressed;
-        
+
+        if (lmb) ger.NewDivision("TempDiv", "temp");
         
         base.Update(gameTime);
     }

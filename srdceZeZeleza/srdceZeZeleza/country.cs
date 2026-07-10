@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
@@ -27,14 +26,23 @@ public class Country
         //deserialize
         string jsonDivData = File.ReadAllText(CountryDivisionPath);
         CountryDivisionLibrary = JsonSerializer.Deserialize<Dictionary<string, DivisionData>>(jsonDivData, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        
         string jsonDiv = File.ReadAllText(TemplateDataPath);
         TemplateData = JsonSerializer.Deserialize<Dictionary<string, DivisionData>>(jsonDiv, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+        DivisionStats = SyncDivisionsWithDivData(CountryDivisionLibrary);
+    }
+
+    private Dictionary<string, Division> SyncDivisionsWithDivData(Dictionary<string, DivisionData> divData)
+    {
+        Dictionary<string, Division> Divisions = new();
         
-        //get the divisions into a dict
-        foreach ((string codename, DivisionData data) in CountryDivisionLibrary)
+        foreach ((string codename, DivisionData data) in divData)
         {
-            DivisionStats.Add(codename, new Division(CountryDivisionLibrary[codename]));
+            Divisions.Add(codename, new Division(divData[codename]));
         }
+        
+        return Divisions;
     }
     
     public void NewDivision(string name, string codeName)
