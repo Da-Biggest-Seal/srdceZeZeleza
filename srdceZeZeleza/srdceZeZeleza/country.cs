@@ -50,6 +50,8 @@ public class Country
         //will add a new entry to the json - from template.json where will all templates stored
         CountryDivisionLibrary.Add(codeName, TemplateData["division"]);
         CountryDivisionLibrary[codeName].Name = name;
+        
+        DivisionStats = SyncDivisionsWithDivData(CountryDivisionLibrary);
     }
 
     public void DeleteDivision(string codeName)

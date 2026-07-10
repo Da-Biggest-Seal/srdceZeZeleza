@@ -15,6 +15,10 @@ public class main : Game
     Country ger;
     
     bool lmb;
+    bool rmb;
+
+    bool prevLmb = false;
+    bool prevRmb = false;
 
     public main()
     {
@@ -29,15 +33,12 @@ public class main : Game
 
         ger = new Country("German Reich", "Countries/Country1");
         
-        foreach (string key in ger.DivisionStats.Keys)
-            Console.WriteLine(key);
+        Division inf = ger.DivisionStats["Infantry"];
         
-        /*Division inf = ger.DivisionStats["Infantry"];
-        
-        Console.WriteLine($"{inf.Name}:\n Soft={inf.Stats.Soft}");
+        Console.WriteLine($"{inf.Name}:\n    Soft={inf.Stats.Soft}");
         foreach (var (eqName, amount) in inf.Req.Equipment)
             Console.WriteLine($"    {eqName}={amount}");
-        */
+        
         base.Initialize();
     }
 
@@ -55,8 +56,20 @@ public class main : Game
             Exit();
         
         lmb = Mouse.GetState().LeftButton == ButtonState.Pressed;
+        rmb = Mouse.GetState().RightButton == ButtonState.Pressed;
 
-        if (lmb) ger.NewDivision("TempDiv", "temp");
+        if (lmb && !prevLmb) ger.NewDivision("TempDiv", "temp");
+        if (rmb && !prevRmb) ger.DeleteDivision("temp");
+
+        if (ger.DivisionStats.ContainsKey("temp"))
+        {
+            Console.WriteLine($"{ger.DivisionStats["temp"].Name}:\n    Soft={ger.DivisionStats["temp"].Stats.Soft}");
+            foreach (var (eqName, amount) in ger.DivisionStats["temp"].Req.Equipment)
+                Console.WriteLine($"    {eqName}={amount}");
+        }
+        
+        prevLmb = lmb;
+        prevRmb = rmb;
         
         base.Update(gameTime);
     }
