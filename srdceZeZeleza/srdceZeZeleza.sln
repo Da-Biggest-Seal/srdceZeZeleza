@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "srdceZeZeleza", "srdceZeZeleza\srdceZeZeleza.csproj", "{BE43228C-23F4-4C26-A104-5FAE81170EED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DivisionDesigner", "DivisionDesigner\DivisionDesigner.csproj", "{BE43228C-23F4-4C26-A104-5FAE81170EED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "main", "main\main.csproj", "{AB9C4410-562F-4315-8BA2-CF5B351BCEE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +14,9 @@ Global
 		{BE43228C-23F4-4C26-A104-5FAE81170EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE43228C-23F4-4C26-A104-5FAE81170EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE43228C-23F4-4C26-A104-5FAE81170EED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB9C4410-562F-4315-8BA2-CF5B351BCEE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB9C4410-562F-4315-8BA2-CF5B351BCEE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB9C4410-562F-4315-8BA2-CF5B351BCEE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB9C4410-562F-4315-8BA2-CF5B351BCEE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

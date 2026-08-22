@@ -5,6 +5,8 @@
         <RollForward>Major</RollForward>
         <PublishReadyToRun>false</PublishReadyToRun>
         <TieredCompilation>false</TieredCompilation>
+        <AssemblyName>DivisionDesigner</AssemblyName>
+        <RootNamespace>DivisionDesigner</RootNamespace>
     </PropertyGroup>
     <PropertyGroup>
         <ApplicationManifest>app.manifest</ApplicationManifest>
